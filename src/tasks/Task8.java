@@ -62,7 +62,7 @@ public class Task8 implements Task {
    */
 
   public Map<Integer, String> getFullNames(Collection<Person> persons) {
-    return persons.stream().collect(Collectors.toMap(Person::getId, Task8::getFullName));
+    return persons.stream().collect(Collectors.toMap(Person::getId, Task8::getFullName, (a1, a2) -> a1));
   }
 
   /* есть ли совпадающие в двух коллекциях персоны?
