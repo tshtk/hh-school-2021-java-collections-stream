@@ -50,10 +50,8 @@ public class Task8 implements Task {
   В исходном варианте фамилия добавлялась в полное имя дважды - думаю, что баг, исправил.
    */
   public static String getFullName(Person person) {
-    if (person.getSecondName() == null && person.getFirstName() == null) return "";
-    else if (person.getFirstName() == null) return person.getSecondName();
-    else if (person.getSecondName() == null) return person.getFirstName();
-    else return (person.getSecondName() + " " + person.getFirstName());
+    return Stream.of(person.getFirstName(), person.getSecondName())
+            .filter(Objects::nonNull).collect(Collectors.joining(" "));
   }
 
   /* словарь id персоны -> ее имя
