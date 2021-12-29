@@ -70,9 +70,7 @@ public class Task8 implements Task {
    */
 
   public boolean hasSamePersons(Collection<Person> persons1, Collection<Person> persons2) {
-    Set<Person> intersection = new HashSet<>(persons1);
-    intersection.retainAll(persons2);
-    return !intersection.isEmpty();
+    return !Collections.disjoint(persons1, persons2);
   }
 
   /*...
