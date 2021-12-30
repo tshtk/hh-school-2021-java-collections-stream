@@ -4,9 +4,8 @@ import common.Person;
 import common.PersonService;
 import common.Task;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /*
@@ -18,10 +17,17 @@ import java.util.stream.Collectors;
  */
 public class Task1 implements Task {
 
-  // !!! Редактируйте этот метод !!!
+  /*
+  Асимптотика:
+  обход множества persons при создании словаря personsById - O(N),
+  обход списка personIds при создании возвращаемого списка - O(N),
+  суммарная сложность - O(N)
+  */
+
   private List<Person> findOrderedPersons(List<Integer> personIds) {
     Set<Person> persons = PersonService.findPersons(personIds);
-    return Collections.emptyList();
+    Map<Integer,Person> personById = persons.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+    return personIds.stream().map(personById::get).toList();
   }
 
   @Override
